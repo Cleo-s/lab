@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+void printHeaderLine(){
+    printf("**********************************\n");
+}
+void printDataLine(){
+    printf("+----------+----------+----------+\n");
+}
+
+void printDotsLine(){
+    printf(". . . . . . . . . . . . . . . . . \n");
+}
+
+void printHeader(){
+    printf("*%7s%3s*%7s%3s*%7s%3s*\n","N","","X","","F(X)","");
+}
+
+void printData(int i, float x, float(F(float)) ){
+    printf("|%10d|%10.2f|%10.2f|\n",i,x,F(x));
+}
+
+float F(float X){
+    return 2*X;
+}
+
+float G(float X){
+    return 8*X;
+}
+
+int main()
+{
+    int N=4;
+    printHeaderLine();
+    printHeader();
+    printHeaderLine();
+    int isTooMuchLines = N>4;
+    for(int i=1; i<=N; i++){
+        printDataLine();
+        if(isTooMuchLines && i==3){
+            printDotsLine();
+            i = N-2;
+            continue;
+        }
+        printData(i, i, G);
+    }
+    printDataLine();
+    return 0;
+}
+}
